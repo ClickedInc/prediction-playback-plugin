@@ -70,7 +70,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1598663545537160}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.1, y: 0, z: 0}
+  m_LocalPosition: {x: -0.025, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4833582970250396}
@@ -83,7 +83,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1760883986759096}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.1, y: 0, z: 0}
+  m_LocalPosition: {x: 0.025, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4833582970250396}
@@ -201,9 +201,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9674f6df9a7a67b47ac7e262eb7147c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  head: {fileID: 0}
-  timeWarpingCamera: {fileID: 0}
-  anchor: {fileID: 0}
+  IsTimeWarping: 1
+  IsPredicting: 1
+  csvName: test
+  capturePath: CaptureFolder/test/
+  captureLength: 500
+  captureFrame: 60
+  captureWidth: 2048
+  captureHeight: 1024
 --- !u!124 &124653596802022538
 Behaviour:
   m_ObjectHideFlags: 1
