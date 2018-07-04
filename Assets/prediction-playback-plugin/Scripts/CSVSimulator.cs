@@ -20,14 +20,12 @@ public class CSVSimulator : MonoBehaviour {
     int qf;
     int qh;
 
-    bool isTimeWarping;
-    bool isPredicting;
-
     string dataName;
 
-    [SerializeField] private bool IsTimeWarping;
-    [SerializeField] private bool IsPredicting;
-    [SerializeField] private string csvName;
+    [SerializeField] private bool UseTimeWarping;
+    [SerializeField] private bool UsePredictedData;
+    [SerializeField] private string csvPath;
+
     public string capturePath;
     [SerializeField] private int captureLength;
     [SerializeField] int captureFrame;
@@ -46,10 +44,10 @@ public class CSVSimulator : MonoBehaviour {
 
     void Update () {
 
-        if (TimeWarpSetting(IsTimeWarping))
-            TimeWarping(isPredicting);
+        if (TimeWarpSetting(UseTimeWarping))
+            TimeWarping(UsePredictedData);
         else
-            NonTimeWarping(isPredicting);
+            NonTimeWarping(UsePredictedData);
 
     }
     private void CaptureCameraPosSetting()
@@ -60,6 +58,8 @@ public class CSVSimulator : MonoBehaviour {
     {
             string[] rotateDataQF = rotateDataSetting(isPredict, qf);
             string[] rotateDataQH = rotateDataSetting(isPredict, qh);
+
+        Debug.Log(rotateDataQF[1]);
 
             transform.rotation = new Quaternion(
                 float.Parse(rotateDataQF[1]),
@@ -79,7 +79,7 @@ public class CSVSimulator : MonoBehaviour {
 
         if (qf <= captureLength)
         {
-            timeWarpingCamera.Capture(float.Parse(data[qf]["time_stamp"].ToString()));
+            //timeWarpingCamera.Capture(float.Parse(data[qf]["time_stamp"].ToString()));
         }
 
         if (qf++ >= 6)
@@ -90,11 +90,10 @@ public class CSVSimulator : MonoBehaviour {
 
     private void NonTimeWarping(bool isPredict)
     {
-        if (qf <= captureLength)
-        {
-            string[] rotateDataQF = rotateDataSetting(isPredict, qf);
 
-            transform.rotation = new Quaternion(
+            string[] rotateDataQF = rotateDataSetting(isPredict, qf);
+        Debug.Log(rotateDataQF[1]);
+        transform.rotation = new Quaternion(
                 float.Parse(rotateDataQF[1]),
                 float.Parse(rotateDataQF[2]),
                 float.Parse(rotateDataQF[3]),
@@ -107,11 +106,11 @@ public class CSVSimulator : MonoBehaviour {
 
             if (qf <= captureLength)
             {
-                timeWarpingCamera.Capture(float.Parse(data[qf]["time_stamp"].ToString()));
+                //timeWarpingCamera.Capture(float.Parse(data[qf]["time_stamp"].ToString()));
             }
             qf++;
 
-        }
+ 
     }
 
 
@@ -119,7 +118,7 @@ public class CSVSimulator : MonoBehaviour {
     {
         string[] rotateData;
 
-        if (isPredicting)
+        if (UsePredictedData)
         {
             rotateData = data[dataNum]["predicted_ori"].ToString().Split(',', '(', ')');
         }
@@ -159,11 +158,8 @@ public class CSVSimulator : MonoBehaviour {
         PlayerSettings.defaultScreenHeight = captureHeight;
         PlayerSettings.defaultScreenWidth = captureWidth;
 
+        data = CSVReader.Read(csvPath);
 
-        dataName = csvName;
 
-        this.isPredicting = IsPredicting;
-
-        data = CSVReader.Read(dataName);
     }
 }

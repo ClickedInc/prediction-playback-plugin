@@ -5,7 +5,7 @@ using UnityEditor;
 
 public class Exporter : MonoBehaviour {
 
-    [MenuItem("Clicked/Export prediction-playback-plugin!!")]
+    [MenuItem("ExportPlugin/Export prediction-playback-plugin!!")]
     public static void Exporting()
     {
         string prefabfilename = "Assets/prediction-playback-plugin";
