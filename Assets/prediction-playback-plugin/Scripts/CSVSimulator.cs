@@ -30,12 +30,11 @@ public class CSVSimulator : MonoBehaviour {
 
     private void Awake()
     {
-
         Init();      
     }
 
-    void Update () {
-
+    void Update () 
+    {
         if (UseTimeWarping)
             TimeWarping(UsePredictedData);
         else
@@ -46,6 +45,10 @@ public class CSVSimulator : MonoBehaviour {
     {
         string[] rotateDataQF = rotateDataSetting(isPredict, qf);
         string[] rotateDataQH = rotateDataSetting(isPredict, qh);
+
+        if (rotateDataQF == null || rotateDataQH == null) {
+            return;
+        }
 
         transform.rotation = new Quaternion(
           float.Parse(rotateDataQF[1]),
@@ -63,7 +66,7 @@ public class CSVSimulator : MonoBehaviour {
             float.Parse(rotateDataQH[4])
             );
 
-        if (qf < captureLength)
+        if (qf <= captureLength)
         {
             timeWarpingCamera.Capture(float.Parse(data[qf]["time_stamp"].ToString()));
         }
@@ -77,6 +80,10 @@ public class CSVSimulator : MonoBehaviour {
     private void NonTimeWarping(bool isPredict)
     {
         string[] rotateDataQF = rotateDataSetting(isPredict, qf);
+        if (rotateDataQF == null) {
+            return;
+        }
+
         Debug.Log(rotateDataQF[1]);
         transform.rotation = new Quaternion(
           float.Parse(rotateDataQF[1]),
@@ -94,12 +101,14 @@ public class CSVSimulator : MonoBehaviour {
           timeWarpingCamera.Capture(float.Parse(data[qf]["time_stamp"].ToString()));
         }
         qf++;
- 
     }
-
 
     private string[] rotateDataSetting(bool isPredict, int dataNum)
     {
+        if (dataNum >= data.Count) {
+            return null;
+        }
+
         string[] rotateData;
 
         if (UsePredictedData)
@@ -129,8 +138,6 @@ public class CSVSimulator : MonoBehaviour {
         else
             captureLength = 0;
 
-      
-
         GameObject captureModule = Instantiate(Resources.Load("CaptureModule") as GameObject);
 
         head = GameObject.Find("Head");
@@ -145,8 +152,5 @@ public class CSVSimulator : MonoBehaviour {
         rightTexture.transform.position = new Vector3(100.5f, 0, 0.866f);
 
         Time.captureFramerate = captureFrame;
-
     }
-
-
 }

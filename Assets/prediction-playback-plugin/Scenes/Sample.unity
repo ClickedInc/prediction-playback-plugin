@@ -23,10 +23,10 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1
+  m_AmbientIntensity: 0.5
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 2bd8959f5fbd3644aa33af1a155fc147, type: 2}
+  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -152,7 +152,45 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 114919564170190262, guid: b52a4c16819490740b3f8ae724d62f6a,
+        type: 2}
+      propertyPath: csvPath
+      value: Assets/prediction-playback-plugin/test.csv
+      objectReference: {fileID: 0}
+    - target: {fileID: 114919564170190262, guid: b52a4c16819490740b3f8ae724d62f6a,
+        type: 2}
+      propertyPath: capturePath
+      value: CaptureFolder/test
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554553070146592, guid: b52a4c16819490740b3f8ae724d62f6a, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.097
+      objectReference: {fileID: 0}
+    - target: {fileID: 4515217899102030, guid: b52a4c16819490740b3f8ae724d62f6a, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.097
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554553070146592, guid: b52a4c16819490740b3f8ae724d62f6a, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.0805
+      objectReference: {fileID: 0}
+    - target: {fileID: 4515217899102030, guid: b52a4c16819490740b3f8ae724d62f6a, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.0805
+      objectReference: {fileID: 0}
+    - target: {fileID: 4515217899102030, guid: b52a4c16819490740b3f8ae724d62f6a, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.032
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554553070146592, guid: b52a4c16819490740b3f8ae724d62f6a, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0.032
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 81418038276703904, guid: b52a4c16819490740b3f8ae724d62f6a, type: 2}
+    - {fileID: 81988580609051412, guid: b52a4c16819490740b3f8ae724d62f6a, type: 2}
+    - {fileID: 124909159277316742, guid: b52a4c16819490740b3f8ae724d62f6a, type: 2}
+    - {fileID: 124653596802022538, guid: b52a4c16819490740b3f8ae724d62f6a, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: b52a4c16819490740b3f8ae724d62f6a, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &302841790
@@ -498,7 +536,6 @@ GameObject:
   m_Component:
   - component: {fileID: 749602347}
   - component: {fileID: 749602346}
-  - component: {fileID: 749602348}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -555,17 +592,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!114 &749602348
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 749602345}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e93034c6016b91949a1083ca72a4d0e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &829158340
 GameObject:
   m_ObjectHideFlags: 0

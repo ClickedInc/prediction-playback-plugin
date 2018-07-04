@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class CaptureManager : MonoBehaviour {
@@ -12,16 +13,16 @@ public class CaptureManager : MonoBehaviour {
 
     public static string ScreenShotName(int width, int height, float time)
     {
-        return string.Format("{0}{1}_{2}.png",
-                             folder,
-                             captureNum,
-                             time
-                             //System.DateTime.Now.ToString("hh-mm-ss")
-                             );
+        string filename = string.Format("{0}_{1}.png",
+                                        captureNum,
+                                        time
+                                        //System.DateTime.Now.ToString("hh-mm-ss")
+                                        );
+        return Path.Combine(folder, filename);
     }
 
-    public void Capture (float time) {
-
+    public void Capture (float time) 
+    {
         ScreenCapture.CaptureScreenshot(ScreenShotName(256,256, time));
         captureNum++;
     }
