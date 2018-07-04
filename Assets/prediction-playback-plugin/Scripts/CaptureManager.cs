@@ -8,27 +8,21 @@ public class CaptureManager : MonoBehaviour {
 
     CSVSimulator csvSimulator;
 
+    static int captureNum;
+
     public static string ScreenShotName(int width, int height, float time)
     {
         return string.Format("{0}{1}_{2}.png",
                              folder,
-                             time,
-                             System.DateTime.Now.ToString("hh-mm-ss")
+                             captureNum,
+                             time
+                             //System.DateTime.Now.ToString("hh-mm-ss")
                              );
-    }
-
-    void Awake () {
-
-        csvSimulator = FindObjectOfType<CSVSimulator>();
-
-        if (csvSimulator.capturePath != string.Empty)
-            folder = csvSimulator.capturePath;
-
-        System.IO.Directory.CreateDirectory(folder);
     }
 
     public void Capture (float time) {
 
         ScreenCapture.CaptureScreenshot(ScreenShotName(256,256, time));
+        captureNum++;
     }
 }

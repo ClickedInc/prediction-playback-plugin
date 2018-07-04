@@ -201,11 +201,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9674f6df9a7a67b47ac7e262eb7147c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UseTimeWarping: 0
+  UseTimeWarping: 1
   UsePredictedData: 1
   csvPath: C:\projects\prediction-playback-plugin\Assets\prediction-playback-plugin\test.csv
   capturePath: CaptureFolder/test/
-  captureLength: 2000
+  captureLength: 100
   captureFrame: 60
   captureWidth: 2048
   captureHeight: 1024

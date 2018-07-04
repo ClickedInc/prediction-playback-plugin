@@ -152,11 +152,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114919564170190262, guid: b52a4c16819490740b3f8ae724d62f6a,
-        type: 2}
-      propertyPath: UsePredictedData
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b52a4c16819490740b3f8ae724d62f6a, type: 2}
   m_IsPrefabParent: 0
@@ -503,6 +498,7 @@ GameObject:
   m_Component:
   - component: {fileID: 749602347}
   - component: {fileID: 749602346}
+  - component: {fileID: 749602348}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -559,6 +555,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &749602348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 749602345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e93034c6016b91949a1083ca72a4d0e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &829158340
 GameObject:
   m_ObjectHideFlags: 0
