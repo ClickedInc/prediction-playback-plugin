@@ -21,7 +21,7 @@ How to use :
   - Capture Frame : Advances the game by '1 / Capture Frame' per frame.
 
   - Capture Width , Capture Height :  set the resolution of the captured file.
-    (If do not work, set the resolution of the editor game view to 'Free Aspect')
+    (If do not work, set the resolution of the editor game view to 'Standalone' or place the scale slider in the game view to the far left.)
 
 5. Press the play button on the editor.
 
