@@ -32,6 +32,8 @@ public class PPPMenubar : MonoBehaviour {
             airVRCameraRig.transform.position = samplePlayer.transform.position;
             Object.DestroyImmediate(playbackCamera);
         }
+
+        EditorApplication.isPlaying = true;
     }
     [MenuItem("onAirVR/Select Capture Mode")]
     public static void UseCaptureMode()
@@ -47,6 +49,8 @@ public class PPPMenubar : MonoBehaviour {
             playbackCamera.transform.parent = samplePlayer.transform;
             playbackCamera.transform.position = samplePlayer.transform.position;
         }
+
+        EditorApplication.isPlaying = true;
     }
 
 }

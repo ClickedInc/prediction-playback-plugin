@@ -110,6 +110,11 @@ public class CSVSimulator : MonoBehaviour {
         {
             captureManger.CaptureScreenshot(float.Parse(data[qf]["time_stamp"].ToString()), path, message, num);
         }
+        else
+        {
+            if (captureLength != 0)
+                EditorApplication.isPlaying = false;
+        }          
     }
 
     private IEnumerator Simulation()
@@ -130,7 +135,7 @@ public class CSVSimulator : MonoBehaviour {
                 TimeWarpSimulating(true, false, timeWarp_nonPredict_path, "TimeWarp & NonPredict", captureNum);
         }
 
-        if (qf++ >= LatencyFrameCirculate(1000))
+        if (qf++ >= LatencyFrameCirculate(120))
         {
             qh++;
         }
