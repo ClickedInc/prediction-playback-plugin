@@ -34,7 +34,7 @@ public class AirVRSampleSimpleScene : MonoBehaviour, AirVRCameraRigManager.Event
     }
 
     void Update() {
-        if (!PPPMenubar.isCapturemode)
+        if (!MenubarAdder.isCapturemode)
         {
             if (_sceneBeingUnloaded == false && AirVRInput.GetDown(cameraRig, AirVRInput.Touchpad.Button.Back))
             {

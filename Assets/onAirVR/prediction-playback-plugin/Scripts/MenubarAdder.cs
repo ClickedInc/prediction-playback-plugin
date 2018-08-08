@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-public class PPPMenubar : MonoBehaviour {
+public class MenubarAdder : MonoBehaviour {
 
     public static bool isCapturemode;
+
     [MenuItem("ExportPlugin/Export composite_Plugin!!")]
     public static void Exporting()
     {
@@ -35,6 +36,7 @@ public class PPPMenubar : MonoBehaviour {
 
         EditorApplication.isPlaying = true;
     }
+
     [MenuItem("onAirVR/Select Capture Mode")]
     public static void UseCaptureMode()
     {

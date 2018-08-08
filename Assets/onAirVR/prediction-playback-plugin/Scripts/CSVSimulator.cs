@@ -12,12 +12,16 @@ public class CSVSimulator : MonoBehaviour {
         {"StandAlone",6 },
         {"FreeAspect",0 }
     };
-
-    private string csvPath;
+   
     private int captureLength;
     private int captureFrame;
     private int captureWidth;
     private int captureHeight;
+    private int estimatedDelayTime;
+    private int qf;
+    private int qh;
+    private int captureNum;
+    private string csvPath;
     private string timeWarp_predict_path;
     private string timeWarp_nonPredict_path;
     private string nonTimeWarp_predict_path;
@@ -25,19 +29,15 @@ public class CSVSimulator : MonoBehaviour {
     private CapturedataSetter captureDataSetter;
     private List<Dictionary<string, object>> data;
     private Camera[] playbackCameras = new Camera[2];
+    private Camera timeWarpingCamera;
+    private CaptureManager captureManger;
     private GameObject head;
     private GameObject anchor;
-    private CaptureManager captureManger;
-    private Camera timeWarpingCamera;
     private GameObject leftTexture;
     private GameObject rightTexture;
-    private int qf;
-    private int qh;
-    private int captureNum;
-    
+  
     private enum CaptureState
     {
-        IDLE,
         TimeWarp_Predict,
         TimeWarp_NonPredict,
         NonTimeWarp_Predict,
@@ -52,9 +52,9 @@ public class CSVSimulator : MonoBehaviour {
 
     private void Update () 
     {
-        StartCoroutine(Simulation());
+        StartCoroutine(SimulationControll());
         SetGameviewScale(0.0001f);
-        Debug.Log("headFrame : " + qf);
+        Debug.Log("HeadFrame : " + qf);
         Debug.Log("TextureFrame : " + qh);
     }
 
@@ -70,7 +70,7 @@ public class CSVSimulator : MonoBehaviour {
         return latencyFrame;
     }
 
-    private void TimeWarpSimulating(bool useTimeWarp, bool usePredict, string path, string message, int num)
+    private void Simulate(bool useTimeWarp, bool usePredict, string path, string message, int num)
     {
         string[] rotateDataQF = rotateDataSetting(usePredict, qf);
         string[] rotateDataQH = rotateDataSetting(usePredict, qh);
@@ -117,7 +117,7 @@ public class CSVSimulator : MonoBehaviour {
         }          
     }
 
-    private IEnumerator Simulation()
+    private IEnumerator SimulationControll()
     {
         yield return new WaitForEndOfFrame();
 
@@ -126,16 +126,16 @@ public class CSVSimulator : MonoBehaviour {
         for (int i = 0; i < 4; i++)
         {
             if (i == 0)
-                TimeWarpSimulating(false, false, nonTimeWarp_nonPredict_path, "NonTimeWarp & NonPredict", captureNum);
+                Simulate(false, false, nonTimeWarp_nonPredict_path, "NonTimeWarp & NonPredict", captureNum);
             else if (i == 1)
-                TimeWarpSimulating(false, true, nonTimeWarp_predict_path, "NonTimeWarp & Predict", captureNum);
+                Simulate(false, true, nonTimeWarp_predict_path, "NonTimeWarp & Predict", captureNum);
             else if (i == 2)
-                TimeWarpSimulating(true, true, timeWarp_predict_path, "TimeWarp & Predict", captureNum);
+                Simulate(true, true, timeWarp_predict_path, "TimeWarp & Predict", captureNum);
             else
-                TimeWarpSimulating(true, false, timeWarp_nonPredict_path, "TimeWarp & NonPredict", captureNum);
+                Simulate(true, false, timeWarp_nonPredict_path, "TimeWarp & NonPredict", captureNum);
         }
 
-        if (qf++ >= LatencyFrameCirculate(120))
+        if (qf++ >= LatencyFrameCirculate(estimatedDelayTime))
         {
             qh++;
         }
@@ -174,6 +174,7 @@ public class CSVSimulator : MonoBehaviour {
         this.timeWarp_nonPredict_path = captureDataSetter.TimeWarp_nonPredict_path;
         this.nonTimeWarp_predict_path = captureDataSetter.NonTimeWarp_predict_path;
         this.nonTimeWarp_nonPredict_path = captureDataSetter.NonTimeWarp_nonPredict_path;
+        this.estimatedDelayTime = captureDataSetter.estimatedDelayTime;
 
         if (timeWarp_predict_path == string.Empty || nonTimeWarp_predict_path == string.Empty 
             || timeWarp_nonPredict_path == string.Empty || nonTimeWarp_nonPredict_path == string.Empty)

@@ -42,7 +42,7 @@ public class AirVRSamplePlayer : MonoBehaviour {
     private Vector3 inputDirection {
         get {
             Vector2 result = Vector2.zero;
-            if (!PPPMenubar.isCapturemode)
+            if (!MenubarAdder.isCapturemode)
             {
                 if (AirVRInput.Get(_cameraRig, AirVRInput.Touchpad.Button.Touch))
                 {
@@ -77,7 +77,7 @@ public class AirVRSamplePlayer : MonoBehaviour {
                 moveDirection = moveDirection.normalized;
             }
 
-            if (!PPPMenubar.isCapturemode)
+            if (!MenubarAdder.isCapturemode)
             {
                 Vector3 velocity = speed * (_cameraRig as AirVRStereoCameraRig).centerEyeAnchor.TransformDirection(moveDirection);
                 Vector3 horizontalDir = new Vector3(velocity.x, 0.0f, velocity.z).normalized;
@@ -98,7 +98,7 @@ public class AirVRSamplePlayer : MonoBehaviour {
     }
 
     private void processInput() {
-        if (!PPPMenubar.isCapturemode)
+        if (!MenubarAdder.isCapturemode)
         {
             if (AirVRInput.GetDown(_cameraRig, AirVRInput.Touchpad.Button.Touch) ||
             AirVRInput.GetDown(_cameraRig, AirVRInput.Gamepad.Button.A) ||
@@ -110,7 +110,7 @@ public class AirVRSamplePlayer : MonoBehaviour {
     }
 
     public void throwCan() {
-        if (!PPPMenubar.isCapturemode)
+        if (!MenubarAdder.isCapturemode)
         {
             Vector3 forward = _cameraRig.centerEyeAnchor.forward;
 
@@ -124,14 +124,14 @@ public class AirVRSamplePlayer : MonoBehaviour {
     void Awake() {
         _thisTransform = transform;
         _thisCharacterController = GetComponent<CharacterController>();
-        if (!PPPMenubar.isCapturemode)
+        if (!MenubarAdder.isCapturemode)
             _cameraRig = GetComponentInChildren<AirVRStereoCameraRig>();
         _headLocator = transform.Find("Body/HeadLocator");
         _soundShot = transform.Find("SoundShot").GetComponent<AudioSource>();
     }
 
     void Update() {
-        if (!PPPMenubar.isCapturemode)
+        if (!MenubarAdder.isCapturemode)
             _headLocator.rotation = _cameraRig.centerEyeAnchor.rotation;
         
         processMovement();
